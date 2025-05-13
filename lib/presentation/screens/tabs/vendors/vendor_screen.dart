@@ -9,15 +9,16 @@ class VendorScreen extends StatefulWidget {
   State<VendorScreen> createState() => _VendorScreenState();
 }
 
-class _VendorScreenState extends State<VendorScreen> with SingleTickerProviderStateMixin {
+class _VendorScreenState extends State<VendorScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
-  
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -79,7 +80,7 @@ class _MyVendorsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     // Mock data for vendors
     final vendors = [
-      _VendorModel(
+      const _VendorModel(
         id: '1',
         name: 'Elegant Events Venue',
         category: 'Venue',
@@ -89,9 +90,10 @@ class _MyVendorsTab extends StatelessWidget {
         isBooked: true,
         price: 15000,
         notes: 'Booked for October 15, 2024. Deposit of \$5,000 paid.',
-        imageUrl: 'https://images.pexels.com/photos/265129/pexels-photo-265129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/265129/pexels-photo-265129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
-      _VendorModel(
+      const _VendorModel(
         id: '2',
         name: 'Divine Photography',
         category: 'Photographer',
@@ -101,9 +103,10 @@ class _MyVendorsTab extends StatelessWidget {
         isBooked: false,
         price: 3000,
         notes: 'Meeting scheduled for June 15 at 2:00 PM.',
-        imageUrl: 'https://images.pexels.com/photos/3737744/pexels-photo-3737744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/3737744/pexels-photo-3737744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
-      _VendorModel(
+      const _VendorModel(
         id: '3',
         name: 'Gourmet Catering Co.',
         category: 'Caterer',
@@ -113,9 +116,10 @@ class _MyVendorsTab extends StatelessWidget {
         isBooked: true,
         price: 9500,
         notes: 'Deposit of \$2,000 paid. Tasting scheduled for July 10.',
-        imageUrl: 'https://images.pexels.com/photos/5865196/pexels-photo-5865196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/5865196/pexels-photo-5865196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
-      _VendorModel(
+      const _VendorModel(
         id: '4',
         name: 'Bloom & Petal Florists',
         category: 'Florist',
@@ -125,10 +129,11 @@ class _MyVendorsTab extends StatelessWidget {
         isBooked: false,
         price: 2500,
         notes: 'Meeting scheduled for June 20.',
-        imageUrl: 'https://images.pexels.com/photos/1723637/pexels-photo-1723637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/1723637/pexels-photo-1723637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
     ];
-    
+
     // Group vendors by category
     final groupedVendors = <String, List<_VendorModel>>{};
     for (final vendor in vendors) {
@@ -138,10 +143,10 @@ class _MyVendorsTab extends StatelessWidget {
         groupedVendors[vendor.category] = [vendor];
       }
     }
-    
+
     // Sort categories alphabetically
     final sortedCategories = groupedVendors.keys.toList()..sort();
-    
+
     return vendors.isEmpty
         ? _buildEmptyState()
         : ListView.builder(
@@ -150,7 +155,7 @@ class _MyVendorsTab extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = sortedCategories[index];
               final vendorsInCategory = groupedVendors[category]!;
-              
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -162,15 +167,15 @@ class _MyVendorsTab extends StatelessWidget {
                     ),
                   ),
                   ...vendorsInCategory.map((vendor) => _VendorCard(
-                    vendor: vendor,
-                  )),
+                        vendor: vendor,
+                      )),
                   const SizedBox(height: 16),
                 ],
               );
             },
           );
   }
-  
+
   Widget _buildEmptyState() {
     return Center(
       child: Column(
@@ -209,73 +214,76 @@ class _FindVendorsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     // Mock data for vendor categories
     final vendorCategories = [
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Venues',
         icon: Icons.location_on,
         color: Colors.blue,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Photographers',
         icon: Icons.camera_alt,
         color: Colors.purple,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Caterers',
         icon: Icons.restaurant,
         color: Colors.orange,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Florists',
         icon: Icons.local_florist,
         color: Colors.pink,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'DJs & Bands',
         icon: Icons.music_note,
         color: Colors.green,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Wedding Planners',
         icon: Icons.event,
         color: Colors.red,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Bakeries',
         icon: Icons.cake,
         color: Colors.brown,
       ),
-      _VendorCategoryModel(
+      const _VendorCategoryModel(
         name: 'Attire',
         icon: Icons.checkroom,
         color: Colors.teal,
       ),
     ];
-    
+
     // Mock data for featured vendors
     final featuredVendors = [
-      _FeaturedVendorModel(
+      const _FeaturedVendorModel(
         name: 'Grand Plaza Hotel',
         category: 'Venue',
         rating: 4.8,
         reviewCount: 142,
-        imageUrl: 'https://images.pexels.com/photos/1292247/pexels-photo-1292247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/6287584/pexels-photo-6287584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
-      _FeaturedVendorModel(
+      const _FeaturedVendorModel(
         name: 'Elite Photography',
         category: 'Photographer',
         rating: 4.9,
         reviewCount: 89,
-        imageUrl: 'https://images.pexels.com/photos/981091/pexels-photo-981091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/6287584/pexels-photo-6287584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
-      _FeaturedVendorModel(
+      const _FeaturedVendorModel(
         name: 'Luxe Catering',
         category: 'Caterer',
         rating: 4.7,
         reviewCount: 56,
-        imageUrl: 'https://images.pexels.com/photos/6287584/pexels-photo-6287584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        imageUrl:
+            'https://images.pexels.com/photos/6287584/pexels-photo-6287584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
     ];
-    
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -304,9 +312,9 @@ class _FindVendorsTab extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          
+
           // Vendor categories
-          Text(
+          const Text(
             'Categories',
             style: TextStyles.headline5,
           ),
@@ -318,7 +326,7 @@ class _FindVendorsTab extends StatelessWidget {
               crossAxisCount: 4,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 0.85,
+              childAspectRatio: 0.75,
             ),
             itemCount: vendorCategories.length,
             itemBuilder: (context, index) {
@@ -327,17 +335,17 @@ class _FindVendorsTab extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
-          
+
           // Featured vendors
-          Text(
+          const Text(
             'Featured Vendors',
             style: TextStyles.headline5,
           ),
           const SizedBox(height: 16),
           ...featuredVendors.map((vendor) => _FeaturedVendorCard(
-            vendor: vendor,
-          )),
-          
+                vendor: vendor,
+              )),
+
           const SizedBox(height: 80), // Extra space for FAB
         ],
       ),
@@ -347,7 +355,7 @@ class _FindVendorsTab extends StatelessWidget {
 
 class _VendorCard extends StatelessWidget {
   final _VendorModel vendor;
-  
+
   const _VendorCard({required this.vendor});
 
   @override
@@ -382,7 +390,7 @@ class _VendorCard extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Vendor details
           Padding(
             padding: const EdgeInsets.all(16),
@@ -414,7 +422,8 @@ class _VendorCard extends StatelessWidget {
                       child: Text(
                         vendor.isBooked ? 'Booked' : 'Not Booked',
                         style: TextStyles.caption.copyWith(
-                          color: vendor.isBooked ? AppColors.success : Colors.grey,
+                          color:
+                              vendor.isBooked ? AppColors.success : Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -463,7 +472,7 @@ class _VendorCard extends StatelessWidget {
 
 class _CategoryCard extends StatelessWidget {
   final _VendorCategoryModel category;
-  
+
   const _CategoryCard({required this.category});
 
   @override
@@ -505,7 +514,7 @@ class _CategoryCard extends StatelessWidget {
 
 class _FeaturedVendorCard extends StatelessWidget {
   final _FeaturedVendorModel vendor;
-  
+
   const _FeaturedVendorCard({required this.vendor});
 
   @override
@@ -525,7 +534,6 @@ class _FeaturedVendorCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Vendor image
           ClipRRect(
             borderRadius: const BorderRadius.horizontal(
               left: Radius.circular(12),
@@ -533,11 +541,10 @@ class _FeaturedVendorCard extends StatelessWidget {
             child: Image.network(
               vendor.imageUrl,
               width: 120,
-              height: 120,
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
           ),
-          
+
           // Vendor details
           Expanded(
             child: Padding(
@@ -616,7 +623,7 @@ class _VendorModel {
   final double price;
   final String? notes;
   final String imageUrl;
-  
+
   const _VendorModel({
     required this.id,
     required this.name,
@@ -635,7 +642,7 @@ class _VendorCategoryModel {
   final String name;
   final IconData icon;
   final Color color;
-  
+
   const _VendorCategoryModel({
     required this.name,
     required this.icon,
@@ -649,7 +656,7 @@ class _FeaturedVendorModel {
   final double rating;
   final int reviewCount;
   final String imageUrl;
-  
+
   const _FeaturedVendorModel({
     required this.name,
     required this.category,
